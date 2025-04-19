@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <div id="calculator" style="width: 600px; height: 400px;"></div>
+    <script>
+        var elt = document.getElementById('calculator');
+        var calculator = Desmos.GraphingCalculator(elt);
+        calculator.updateSettings({
+            keypad: false
+        });
+        calculator.setExpression({ id: 'table', type: 'table', columns: [
+            { latex: 'x', values: ['1', '2', '3'] },
+            { latex: 'y', values: ['4', '5', '6'] }
+        ]});
+      </script>
+</body>
+</html>
