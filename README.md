@@ -1,5 +1,5 @@
 # Text to Desmos
-With just a type face and character string, you can write anything in Desmos!~ 😄
+With just a typeface and character string, you can write anything in Desmos!~ 😄
 
 ## Examples 
 ![juliana text in Desmos](https://raw.githubusercontent.com/walpuerto/Text-to-Desmos/refs/heads/main/examples/juliana.png)
