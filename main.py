@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from fontTools.pens.basePen import BasePen
 from fontTools.ttLib import TTFont
 
-font = TTFont("fonts\\Borel-Regular.ttf", fontNumber=0)
+font = TTFont("fonts\\cambria.ttc", fontNumber=0)
 # print('glyphID is: ' + str(font.getGlyphID("a")))
 
 class MatplotlibPen(BasePen):
@@ -22,11 +22,11 @@ class MatplotlibPen(BasePen):
     def _closePath(self):
         self.paths[-1].append(self.paths[-1][0])
 
-text = "winsor"  # String of characters to plot
+text = "emman"  # String of characters to plot
 x_offset = 0  # Initial x-offset for positioning characters
 spacing = 100  # Spacing between characters
 
-scale = 1  # Scale factor for the plot
+scale = 10  # Scale factor for the plot
 plt.figure(figsize=(10 * scale, 5 * scale))  # Set figure size
 
 # Open a file to save the coordinates
@@ -40,11 +40,16 @@ with open("coordinates.txt", "w") as file:
         for path in pen.paths:
             x, y = zip(*path)
             x = [point_x + x_offset for point_x in x]  # Apply x_offset to x-coordinates
-            # Add a seperator between glyphs, hehe...
-            file.write("==========================\n")
-            for point_x, point_y in zip(x, y):
+            
+            for i, (point_x, point_y) in enumerate(zip(x, y)):
                 # Save the coordinates to the file
-                file.write(f"{point_x}, {point_y}\n")
+                file.write(f"({point_x}, {point_y})")
+                if i != len(x) - 1:
+                    file.write(", ")
+            
+            # Add a seperator between glyphs, hehe...
+            file.write("\n")
+
             plt.plot(x, y, marker='o')
         
         # Update x_offset for the next character
@@ -52,4 +57,4 @@ with open("coordinates.txt", "w") as file:
 
 plt.gcf().canvas.manager.set_window_title("Font Glyphs through Points")
 plt.axis('equal')
-plt.show()
+# plt.show()
